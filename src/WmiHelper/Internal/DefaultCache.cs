@@ -1,5 +1,5 @@
 ﻿
-namespace WmiHelper
+namespace WmiHelper.Internal
 {
     internal static class DefaultCache<T>
     {

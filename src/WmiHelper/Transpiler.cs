@@ -3,6 +3,7 @@ namespace WmiHelper
 {
     using System.Collections.Generic;
     using System.Dynamic;
+    using WmiHelper.Internal;
 
     public static class Transpiler
     {

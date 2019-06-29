@@ -1,5 +1,5 @@
 ﻿
-namespace WmiHelper
+namespace WmiHelper.Internal
 {
     using System;
     using System.Text;

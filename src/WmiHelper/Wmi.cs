@@ -7,6 +7,8 @@ namespace WmiHelper
     using System.Management;
     using System.Diagnostics;
     using System.Threading;
+    using WmiHelper.Internal;
+
     /// <summary>
     /// Gets the system info, see https://docs.microsoft.com/en-us/windows/desktop/cimwin32prov/computer-system-hardware-classes
     /// </summary>
