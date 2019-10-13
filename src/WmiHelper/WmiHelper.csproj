@@ -5,7 +5,15 @@
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects> 
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Authors>Orlys</Authors>
+    <Company />
+    <Product>Orlys.WmiHelper</Product>
+    <Description>Provides the easy way to read WMI Infomation.</Description>
+    <Copyright>Copyright © Orlys 2019</Copyright>
+    <PackageId>Orlys.WmiHelper</PackageId>
+    <PackageProjectUrl>https://github.com/Orlys/WmiHelper</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Orlys/WmiHelper</RepositoryUrl> 
   </PropertyGroup>
 
   <ItemGroup>

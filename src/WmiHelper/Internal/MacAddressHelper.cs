@@ -1,5 +1,5 @@
 ﻿
-namespace WmiHelper.Internal
+namespace Orlys.WmiHelper.Internal
 {
     using System.Net.NetworkInformation;
     using System.Linq;

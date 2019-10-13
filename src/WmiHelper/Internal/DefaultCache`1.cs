@@ -1,5 +1,5 @@
 ﻿
-namespace WmiHelper.Internal
+namespace Orlys.WmiHelper.Internal
 {
     internal static class DefaultCache<T>
     {

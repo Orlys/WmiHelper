@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmiHelper", "src\WmiHelper\WmiHelper.csproj", "{DB9EF3FD-E21F-4EB9-B9CC-691B44D567F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmiHelper", "src\WmiHelper\WmiHelper.csproj", "{DB9EF3FD-E21F-4EB9-B9CC-691B44D567F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmiHelper.Dev", "src\WmiHelper.Dev\WmiHelper.Dev.csproj", "{32D874AA-6F31-405F-9466-C61708E10081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmiHelper.Dev", "src\WmiHelper.Dev\WmiHelper.Dev.csproj", "{32D874AA-6F31-405F-9466-C61708E10081}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7A9267D5-9FCB-4B0B-A804-328580ED3C88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

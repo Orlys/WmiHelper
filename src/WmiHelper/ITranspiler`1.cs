@@ -1,5 +1,5 @@
 ﻿
-namespace WmiHelper
+namespace Orlys.WmiHelper
 {
     using System.Collections.Generic;
     using System.ComponentModel;

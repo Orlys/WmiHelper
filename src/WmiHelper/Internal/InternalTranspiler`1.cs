@@ -1,16 +1,16 @@
 ﻿
-namespace WmiHelper.Internal
+namespace Orlys.WmiHelper.Internal
 {
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal sealed class Transpiler<T> : ITranspiler<T>
+    internal sealed class InternalTranspiler<T> : ITranspiler<T>
     {
         private readonly Func<IDictionary<string, object>> _builder;
 
-        internal Transpiler(Func<IDictionary<string, object>> builder)
+        internal InternalTranspiler(Func<IDictionary<string, object>> builder)
         {
             this._builder = builder;
         }

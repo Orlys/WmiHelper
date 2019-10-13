@@ -1,16 +1,16 @@
 ﻿
-namespace WmiHelper
+namespace Orlys.WmiHelper
 {
     using System.Collections.Generic;
     using System.Dynamic;
-    using WmiHelper.Internal;
+    using Orlys.WmiHelper.Internal;
 
     public static class Transpiler
     {
         public readonly static ITranspiler<dynamic> Dynamic
-            = new Transpiler<dynamic>(() => new ExpandoObject());
-
+            = new InternalTranspiler<dynamic>(() => new ExpandoObject());
+         
         public readonly static ITranspiler<IReadOnlyDictionary<string, object>> ReadOnlyDictionary
-            = new Transpiler<IReadOnlyDictionary<string, object>>(() => new Dictionary<string, object>());
+            = new InternalTranspiler<IReadOnlyDictionary<string,object>>(() => new Dictionary<string,object>());
     }
 }

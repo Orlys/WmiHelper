@@ -1,5 +1,5 @@
 ﻿
-namespace WmiHelper.Internal
+namespace Orlys.WmiHelper.Internal
 {
     using System;
     using System.Collections.Generic;
@@ -7,9 +7,76 @@ namespace WmiHelper.Internal
     using System.Collections;
     using System.Net;
     using System.Net.NetworkInformation;
+    using System.Management;
+    using System.Text.RegularExpressions;
 
     internal static class CimTypeConverter
     {
+
+        internal static bool TryConvert(CimType cimType, bool isArray, object value, out object result)
+        {
+            var flag = false;
+            result = null;
+            switch (cimType)
+            {
+                case CimType.SInt8:
+                    flag = CimTypeConverter.TryConvert<sbyte>(value, isArray, out result);
+                    break;
+                case CimType.UInt8:
+                    flag = CimTypeConverter.TryConvert<byte>(value, isArray, out result);
+                    break;
+                case CimType.Reference:
+                case CimType.SInt16:
+                    flag = CimTypeConverter.TryConvert<short>(value, isArray, out result);
+                    break;
+                case CimType.UInt16:
+                    flag = CimTypeConverter.TryConvert<ushort>(value, isArray, out result);
+                    break;
+                case CimType.SInt32:
+                    flag = CimTypeConverter.TryConvert<int>(value, isArray, out result);
+                    break;
+                case CimType.UInt32:
+                    flag = CimTypeConverter.TryConvert<uint>(value, isArray, out result);
+                    break;
+                case CimType.SInt64:
+                    flag = CimTypeConverter.TryConvert<long>(value, isArray, out result);
+                    break;
+                case CimType.UInt64:
+                    flag = CimTypeConverter.TryConvert<ulong>(value, isArray, out result);
+                    break;
+                case CimType.Real32:
+                    flag = CimTypeConverter.TryConvert<float>(value, isArray, out result);
+                    break;
+                case CimType.Real64:
+                    flag = CimTypeConverter.TryConvert<double>(value, isArray, out result);
+                    break;
+                case CimType.Boolean:
+                    flag = CimTypeConverter.TryConvert<bool>(value, isArray, out result);
+                    break;
+                case CimType.Char16:
+                    flag = CimTypeConverter.TryConvert<char>(value, isArray, out result);
+                    break;
+
+                // -----
+                case CimType.None:
+                case CimType.Object:
+                    flag = CimTypeConverter.TryConvert<object>(value, isArray, out result);
+                    break;
+
+                // -----
+                case CimType.String:
+                    flag = CimTypeConverter.TryConvertString(value, isArray, out result);
+                    break;
+                case CimType.DateTime:
+                    flag = CimTypeConverter.TryConvertDateTime(value, isArray, out result);
+                    break;
+            }
+
+            return flag;
+        }
+
+
+
         private static DateTime ConvertDateTimeStringToDateTime(string fmt)
         {
             var pattern = "yyyyMMddHHmmss.ffffff+000";
@@ -23,7 +90,7 @@ namespace WmiHelper.Internal
 
             throw new NotSupportedException();
         }
-        internal static bool TryConvertDateTime(object raw, bool isArray, out object result)
+        private static bool TryConvertDateTime(object raw, bool isArray, out object result)
         {
             if (isArray)
             {
@@ -48,7 +115,7 @@ namespace WmiHelper.Internal
             return false;
         }
 
-        internal static bool TryConvert<T>(object raw, bool isArray, out object result)
+        private static bool TryConvert<T>(object raw, bool isArray, out object result)
         {
             if (isArray)
             {
@@ -90,10 +157,10 @@ namespace WmiHelper.Internal
         }
         private static bool IsIPAddress(string s, out IPAddress address)
         {
-            if (s.Contains(".") || s.Contains(":"))
+            if( Regex.IsMatch(s, @"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$") || Regex.IsMatch(s, @"(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))"))
             {
                 return IPAddress.TryParse(s, out address);
-            }
+            } 
             address = null;
             return false;
         }
@@ -103,7 +170,7 @@ namespace WmiHelper.Internal
             return MacAddressHelper.TryParse(s, out mac);
         }
 
-        internal static bool TryConvertString(object raw, bool isArray, out object result)
+        private static bool TryConvertString(object raw, bool isArray, out object result)
         {
             if (isArray)
             {

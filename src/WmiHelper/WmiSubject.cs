@@ -1,5 +1,5 @@
 ﻿
-namespace WmiHelper
+namespace Orlys.WmiHelper
 {
     public enum WmiSubject
     {
